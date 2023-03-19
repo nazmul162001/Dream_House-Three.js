@@ -191,6 +191,8 @@ const DreamHouse = () => {
     })
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    // Set same fog color when zoom out screen
+    renderer.setClearColor('#262837')
 
     /**
      * Animate
