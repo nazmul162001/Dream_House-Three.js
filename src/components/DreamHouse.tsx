@@ -100,7 +100,7 @@ const DreamHouse = () => {
       const z = Math.cos(angle) * radius
 
       const grave = new THREE.Mesh(graveGeometry, graveMaterial)
-      grave.position.set(x, 0.4, z) // 0.4 is the half of the graveGeometry center value
+      grave.position.set(x, 0.3, z)
       // set the grave random rotation
       grave.rotation.y = (Math.random() - 0.5) * 0.4
       grave.rotation.z = (Math.random() - 0.5) * 0.4
@@ -120,18 +120,23 @@ const DreamHouse = () => {
      * Lights
      */
     // Ambient light
-    const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
+    const ambientLight = new THREE.AmbientLight('#b9d5ff', 0.12)
     gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001)
     scene.add(ambientLight)
 
     // Directional light
-    const moonLight = new THREE.DirectionalLight('#ffffff', 0.5)
+    const moonLight = new THREE.DirectionalLight('#b9d5ff', 0.12)
     moonLight.position.set(4, 5, -2)
     gui.add(moonLight, 'intensity').min(0).max(1).step(0.001)
     gui.add(moonLight.position, 'x').min(-5).max(5).step(0.001)
     gui.add(moonLight.position, 'y').min(-5).max(5).step(0.001)
     gui.add(moonLight.position, 'z').min(-5).max(5).step(0.001)
     scene.add(moonLight)
+
+    // Door Light
+    const doorLight = new THREE.PointLight('ff7d46', 1, 7) // color, intensity, distance
+    doorLight.position.set(0, 2.2, 2.7)
+    house.add(doorLight) // it's a part of the house that's why I add in into house Group
 
     /**
      * Sizes
