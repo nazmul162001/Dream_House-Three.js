@@ -12,7 +12,9 @@ const DreamHouse = () => {
     const gui = new dat.GUI()
 
     // Canvas
-    const canvas: HTMLElement = document.querySelector('canvas.webgl') as HTMLElement
+    const canvas: HTMLElement = document.querySelector(
+      'canvas.webgl'
+    ) as HTMLElement
 
     // Scene
     const scene = new THREE.Scene()
@@ -25,13 +27,29 @@ const DreamHouse = () => {
     /**
      * House
      */
-    // Temporary sphere (create ball)
-    const sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(1, 32, 32),
-      new THREE.MeshStandardMaterial({ roughness: 0.7 })
+    //================= Group ==================//
+    const house = new THREE.Group()
+    scene.add(house)
+    //================= Group ==================//
+
+    //Walls
+    const walls = new THREE.Mesh(
+      new THREE.BoxGeometry(4, 2.5, 4),
+      new THREE.MeshStandardMaterial({ color: '#ac8e82' })
     )
-    sphere.position.y = 1
-    scene.add(sphere)
+    walls.position.y = 1.25
+    house.add(walls)
+
+    // Roof (Using Pyramid)
+    const roof = new THREE.Mesh(
+      new THREE.ConeGeometry(3.5, 1, 4),
+      new THREE.MeshStandardMaterial({ color: '#b35f45' })
+    )
+    // By default ConeGeometry set to the bottom - let's move up the roof
+    roof.position.y = 2.5 + 0.5 // 2.5 is the same as the BoxGeometry & 0.5 is the half of the ConeGeometry
+    // rotate the roof
+    roof.rotation.y = Math.PI * 0.25 // or Math.PI / 4 is the same result
+    house.add(roof)
 
     // Floor (create floor)
     const floor = new THREE.Mesh(
