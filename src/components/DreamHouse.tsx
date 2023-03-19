@@ -27,10 +27,10 @@ const DreamHouse = () => {
     /**
      * House
      */
-    //================= Group ==================//
+    //================= House Group ==================//
     const house = new THREE.Group()
     scene.add(house)
-    //================= Group ==================//
+    //================= House Group ==================//
 
     //Walls
     const walls = new THREE.Mesh(
@@ -82,6 +82,30 @@ const DreamHouse = () => {
     bush4.position.set(-1, 0.05, 2.6)
 
     house.add(bush1, bush2, bush3, bush4)
+
+    //================= Graves Group ==================//
+    const graves = new THREE.Group()
+    scene.add(graves)
+    //================= Graves Group ==================//
+
+    const graveGeometry = new THREE.BoxGeometry(0.6, 0.88, 0.2)
+    const graveMaterial = new THREE.MeshStandardMaterial({ color: '#b2b6b1' })
+
+    // set random angle position for graves
+    for (let i = 0; i < 50; i++) {
+      const angle = Math.random() * Math.PI * 2
+      // set random distance for grave
+      const radius = 3 + Math.random() * 6 // radius value starting from 3 & maximum 9
+      const x = Math.sin(angle) * radius
+      const z = Math.cos(angle) * radius
+
+      const grave = new THREE.Mesh(graveGeometry, graveMaterial)
+      grave.position.set(x, 0.4, z) // 0.4 is the half of the graveGeometry center value
+      // set the grave random rotation
+      grave.rotation.y = (Math.random() - 0.5) * 0.4
+      grave.rotation.z = (Math.random() - 0.5) * 0.4
+      graves.add(grave)
+    }
 
     // Floor (create floor)
     const floor = new THREE.Mesh(
