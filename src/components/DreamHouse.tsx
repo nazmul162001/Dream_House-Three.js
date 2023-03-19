@@ -19,6 +19,10 @@ const DreamHouse = () => {
     // Scene
     const scene = new THREE.Scene()
 
+    // Fog
+    const fog = new THREE.Fog('#262837', 2, 15) // color, near, far
+    scene.fog = fog
+
     /**
      * Textures
      */
