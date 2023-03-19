@@ -25,13 +25,6 @@ const DreamHouse = () => {
     /**
      * House
      */
-    // Temporary sphere (create ball)
-    const sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(1, 32, 32),
-      new THREE.MeshStandardMaterial({ roughness: 0.7 })
-    )
-    sphere.position.y = 1
-    scene.add(sphere)
 
     // Floor (create floor)
     const floor = new THREE.Mesh(
