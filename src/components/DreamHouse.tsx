@@ -51,6 +51,16 @@ const DreamHouse = () => {
     roof.rotation.y = Math.PI * 0.25 // or Math.PI / 4 is the same result
     house.add(roof)
 
+    // Door
+    const door = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      new THREE.MeshStandardMaterial({ color: '#aa7b7b' })
+    )
+    // fixed the position of the door
+    door.position.y = 1 // 1 is the half of the planeGeometry
+    door.position.z = 2 + 0.01 // 2 is the half of the  last value in the BoxGeometry
+    house.add(door)
+
     // Floor (create floor)
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(20, 20),
