@@ -43,16 +43,41 @@ const DreamHouse = () => {
     )
 
     // Bricks Texture
-    const bricksColorTexture = textureLoader.load('/textures/bricks/Color.jpg')
+    const bricksColorTexture = textureLoader.load('/textures/bricks/color.jpg')
     const bricksAmbientOcclusionTexture = textureLoader.load(
-      '/textures/bricks/AmbientOcclusion.jpg'
+      '/textures/bricks/ambientOcclusion.jpg'
     )
     const bricksNormalTexture = textureLoader.load(
-      '/textures/bricks/Normal.jpg'
+      '/textures/bricks/normal.jpg'
     )
     const bricksRougnessTexture = textureLoader.load(
-      '/textures/bricks/Rougness.jpg'
+      '/textures/bricks/rougness.jpg'
     )
+
+    // Grass Texture
+    const grassColorTexture = textureLoader.load('/textures/grass/color.jpg')
+    const grassAmbientOcclusionTexture = textureLoader.load(
+      '/textures/grass/ambientOcclusion.jpg'
+    )
+    const grassNormalTexture = textureLoader.load('/textures/grass/normal.jpg')
+    ;('/textures/grass/rougness.jpg')
+    const grassRougnessTexture = textureLoader.load()
+
+    // repeat
+    grassColorTexture.repeat.set(8, 8)
+    grassAmbientOcclusionTexture.repeat.set(8, 8)
+    grassNormalTexture.repeat.set(8, 8)
+    grassRougnessTexture.repeat.set(8, 8)
+
+    grassColorTexture.wrapS = THREE.RepeatWrapping
+    grassAmbientOcclusionTexture.wrapS = THREE.RepeatWrapping
+    grassNormalTexture.wrapS = THREE.RepeatWrapping
+    grassRougnessTexture.wrapS = THREE.RepeatWrapping
+
+    grassColorTexture.wrapT = THREE.RepeatWrapping
+    grassAmbientOcclusionTexture.wrapT = THREE.RepeatWrapping
+    grassNormalTexture.wrapT = THREE.RepeatWrapping
+    grassRougnessTexture.wrapT = THREE.RepeatWrapping
 
     /**
      * House
@@ -163,7 +188,16 @@ const DreamHouse = () => {
     // Floor (create floor)
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(20, 20),
-      new THREE.MeshStandardMaterial({ color: '#a9c388' })
+      new THREE.MeshStandardMaterial({
+        map: grassColorTexture,
+        aoMap: grassAmbientOcclusionTexture,
+        normalMap: grassNormalTexture,
+        roughnessMap: grassRougnessTexture,
+      })
+    )
+    floor.geometry.setAttribute(
+      'uv2',
+      new THREE.BufferAttribute(floor.geometry.attributes.uv.array, 2)
     )
     floor.rotation.x = -Math.PI * 0.5
     floor.position.y = 0
