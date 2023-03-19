@@ -60,8 +60,11 @@ const DreamHouse = () => {
       '/textures/grass/ambientOcclusion.jpg'
     )
     const grassNormalTexture = textureLoader.load('/textures/grass/normal.jpg')
-    ;('/textures/grass/rougness.jpg')
-    const grassRougnessTexture = textureLoader.load()
+    ;('/textures/grass/normal.jpg')
+    const grassRougnessTexture = textureLoader.load(
+      '/textures/grass/normal.jpg'
+    )
+    ;('/textures/grass/roughness.jpg')
 
     // repeat
     grassColorTexture.repeat.set(8, 8)
@@ -99,7 +102,10 @@ const DreamHouse = () => {
     )
     walls.geometry.setAttribute(
       'uv2',
-      new THREE.BufferAttribute(walls.geometry.attributes.uv.array, 2)
+      new THREE.BufferAttribute(
+        (walls.geometry.attributes.uv as THREE.BufferAttribute).array,
+        2
+      )
     )
     walls.position.y = 1.25
     house.add(walls)
@@ -132,7 +138,10 @@ const DreamHouse = () => {
     )
     door.geometry.setAttribute(
       'uv2',
-      new THREE.BufferAttribute(door.geometry.attributes.uv.array, 2)
+      new THREE.BufferAttribute(
+        (door.geometry.attributes.uv as THREE.BufferAttribute).array,
+        2
+      )
     )
     // fixed the position of the door
     door.position.y = 1 // 1 is the half of the planeGeometry
@@ -198,7 +207,10 @@ const DreamHouse = () => {
     )
     floor.geometry.setAttribute(
       'uv2',
-      new THREE.BufferAttribute(floor.geometry.attributes.uv.array, 2)
+      new THREE.BufferAttribute(
+        (floor.geometry.attributes.uv as THREE.BufferAttribute).array,
+        2
+      )
     )
     floor.rotation.x = -Math.PI * 0.5
     floor.position.y = 0
