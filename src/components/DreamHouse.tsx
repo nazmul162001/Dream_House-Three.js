@@ -138,7 +138,7 @@ const DreamHouse = () => {
     scene.add(moonLight)
 
     // Door Light
-    const doorLight = new THREE.PointLight('ff7d46', 1, 7) // color, intensity, distance
+    const doorLight = new THREE.PointLight('#ff7d46', 1, 7) // color, intensity, distance
     doorLight.position.set(0, 2.2, 2.7)
     house.add(doorLight) // it's a part of the house that's why I add in into house Group
 
